@@ -10,7 +10,7 @@ FLAGS	:=	$(foreach dir, $(program_INCLUDES), -I$(dir))
 all:	$(program_NAME)
 
 $(program_NAME): $(program_SRCS)
-	gcc ${program_SRCS} -o $(program_NAME) $(FLAGS) -g -Wall -Wextra
+	gcc ${program_SRCS} -o $(program_NAME) $(FLAGS) -g -Wall -Wextra -Wpedantic
 
 clean:
 	@- $(RM) $(program_NAME)

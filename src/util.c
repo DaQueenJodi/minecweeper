@@ -114,7 +114,7 @@ void free_string(String *s) { free(s->buff); }
 String read_till_space(String input, unsigned int offset) {
   String s = new_string();
   unsigned int curr_index = offset;
-  while (input.buff[curr_index] != ' ') {
+  while (input.buff[curr_index] != ' ' && input.buff[curr_index] != '\n') {
     if (input.length < curr_index) {
       break;
     }
@@ -128,10 +128,8 @@ BoardInput parse_input(String input) {
   String row = read_till_space(input, 0);
   String col = read_till_space(input, row.length + 1);
   String f = read_till_space(input, col.length + row.length + 2);
-
   board_input.col = atoi(col.buff);
   board_input.row = atoi(row.buff);
-  board_input.flag = strcmp(f.buff, "f");
-
+  board_input.flag = !strcmp(f.buff, "f");
   return board_input;
 }
